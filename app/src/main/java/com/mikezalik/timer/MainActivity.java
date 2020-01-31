@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             seekBar.setEnabled(false);
             timerStart.setText("Stop Timer!");
 
-            CountDownTimer countDownTimer = new CountDownTimer(seekBar.getProgress() * 1000 + 100, 1000) {
+            countDownTimer = new CountDownTimer(seekBar.getProgress() * 1000 + 100, 1000) {
                 @Override
                 public void onTick(long l) {
                     updateTimer((int) l / 1000);
