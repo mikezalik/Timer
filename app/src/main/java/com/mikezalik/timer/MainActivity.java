@@ -20,15 +20,19 @@ public class MainActivity extends AppCompatActivity {
     Button timerStart;
     CountDownTimer countDownTimer;
 
+    public final void resetTimer() {
+        numTime.setText("0:30");
+        seekBar.setProgress(30);
+        seekBar.setEnabled(true);
+        countDownTimer.cancel();
+        timerStart.setText("Start Timer");
+        counterIsActive = false;
+    }
+
     public void buttonClicked(View view) {
 
-        public void resetTimer() {
-            numTime.setText("0:30");
-            seekBar.setProgress(30);
-            seekBar.setEnabled(true);
-            countDownTimer.cancel();
-            timerStart.setText("Start Timer");
-            counterIsActive = false;
+        if(counterIsActive) {
+        resetTimer();
 
         } else {
             counterIsActive = true;
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onFinish() {
                     MediaPlayer mplayer = MediaPlayer.create(getApplicationContext(), R.raw.airhorn);
                     mplayer.start();
+                    resetTimer();
                 }
             }.start();
         }
