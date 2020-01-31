@@ -3,6 +3,8 @@ package com.mikezalik.timer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -11,15 +13,44 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView numTime;
+    SeekBar seekBar;
+
+    public void buttonClicked (View view) {
+       CountDownTimer countDownTimer = new CountDownTimer(seekBar.getProgress() * 1000, 1000) {
+           @Override
+           public void onTick(long l) {
+                updateTimer((int) l / 1000);
+           }
+
+           @Override
+           public void onFinish() {
+
+           }
+       }.start();
+    }
+
+    public void updateTimer (int secondsLeft) {
+
+        int minutes = secondsLeft / 60;
+        int seconds = secondsLeft - (minutes * 60);
+
+        String secondString = Integer.toString(seconds);
+
+        if (secondString.equals("0")) {
+            secondString = "00";
+        }
+
+        numTime.setText(String.format("%s:%s", Integer.toString(minutes), secondString));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         SeekBar seekBar = findViewById(R.id.seekBar);
-        ImageView timerImage = findViewById(R.id.timerImage);
-        final TextView numTime = findViewById(R.id.numTime);
-        Button timerStart = findViewById(R.id.timerStart);
+        numTime = findViewById(R.id.numTime);
 
         seekBar.setMax(600);
         seekBar.setProgress(30);
@@ -27,16 +58,7 @@ public class MainActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                int minutes = i / 60;
-                int seconds = i - (minutes * 60);
-
-                String secondString = Integer.toString(seconds);
-
-                if (secondString.equals("0")) {
-                    secondString = "00";
-                }
-
-                numTime.setText(Integer.toString(minutes) + ":" + secondString);
+                updateTimer(i);
             }
 
             @Override
