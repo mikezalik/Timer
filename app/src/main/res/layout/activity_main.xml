@@ -7,55 +7,51 @@
     tools:context=".MainActivity">
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/timerSeekBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:layout_marginBottom="650dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/timerImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:onClick="buttonClicked"
+        android:id="@+id/sandTimerImageView"
+        android:layout_width="200dp"
+        android:layout_height="520dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerSeekBar"
         app:srcCompat="@drawable/sand_timer" />
 
     <TextView
-        android:id="@+id/numTime"
+        android:id="@+id/timerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="180dp"
         android:text="00:30"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/timerStart"
-        app:layout_constraintEnd_toEndOf="@+id/timerImage"
-        app:layout_constraintStart_toStartOf="@+id/timerImage"
-        app:layout_constraintTop_toTopOf="@+id/timerImage" />
+        android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/timerStart"
-        android:layout_width="0dp"
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="100dp"
-        android:text="Start Timer!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/timerImage"
-        app:layout_constraintStart_toEndOf="@+id/timerImage"
-        app:layout_constraintStart_toStartOf="@+id/timerImage"
-        app:layout_constraintTop_toBottomOf="@+id/numTime" />
-
+        android:layout_marginTop="15dp"
+        android:text="Start Timer"
+        android:onClick="buttonClicked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

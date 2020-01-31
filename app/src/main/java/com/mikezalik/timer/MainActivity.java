@@ -7,25 +7,23 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView numTime;
-    SeekBar seekBar;
+    TextView timerTextView;
+    SeekBar timerSeekBar;
     Boolean counterIsActive = false;
-    Button timerStart;
+    Button startButton;
     CountDownTimer countDownTimer;
 
     public final void resetTimer() {
-        numTime.setText("0:30");
-        seekBar.setProgress(30);
-        seekBar.setEnabled(true);
+        timerTextView.setText("0:30");
+        timerSeekBar.setProgress(30);
+        timerSeekBar.setEnabled(true);
         countDownTimer.cancel();
-        timerStart.setText("Start Timer");
+        startButton.setText("Start Timer");
         counterIsActive = false;
     }
 
@@ -36,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             counterIsActive = true;
-            seekBar.setEnabled(false);
-            timerStart.setText("Stop Timer!");
+            timerSeekBar.setEnabled(false);
+            startButton.setText("Stop Timer!");
 
-            countDownTimer = new CountDownTimer(seekBar.getProgress() * 1000 + 100, 1000) {
+            countDownTimer = new CountDownTimer(timerSeekBar.getProgress() * 1000 + 100, 1000) {
                 @Override
                 public void onTick(long l) {
                     updateTimer((int) l / 1000);
@@ -66,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             secondString = "0" + secondString;
         }
 
-        numTime.setText(Integer.toString(minutes) + ":" + secondString);
+        timerTextView.setText(Integer.toString(minutes) + ":" + secondString);
     }
 
     @Override
@@ -74,14 +72,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        seekBar = findViewById(R.id.seekBar);
-        numTime = findViewById(R.id.numTime);
-        timerStart = findViewById(R.id.timerStart);
+        timerSeekBar = findViewById(R.id.timerSeekBar);
+        timerTextView = findViewById(R.id.timerTextView);
+        startButton = findViewById(R.id.startButton);
 
-        seekBar.setMax(600);
-        seekBar.setProgress(30);
+        timerSeekBar.setMax(600);
+        timerSeekBar.setProgress(30);
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        timerSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 updateTimer(i);
