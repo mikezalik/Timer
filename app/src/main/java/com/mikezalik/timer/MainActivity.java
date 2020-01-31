@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         SeekBar seekBar = findViewById(R.id.seekBar);
         ImageView timerImage = findViewById(R.id.timerImage);
-        TextView numTime = findViewById(R.id.numTime);
+        final TextView numTime = findViewById(R.id.numTime);
         Button timerStart = findViewById(R.id.timerStart);
 
         seekBar.setMax(600);
@@ -26,8 +26,17 @@ public class MainActivity extends AppCompatActivity {
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                int minutes = i / 60;
+                int seconds = i - (minutes * 60);
+
+                String secondString = Integer.toString(seconds);
+
+                if (secondString.equals("0")) {
+                    secondString = "00";
+                }
+
+                numTime.setText(Integer.toString(minutes) + ":" + secondString);
             }
 
             @Override
