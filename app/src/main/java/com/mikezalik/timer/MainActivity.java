@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     TextView numTime;
     SeekBar seekBar;
 
-    public void buttonClicked (View view) {
-       CountDownTimer countDownTimer = new CountDownTimer(seekBar.getProgress() * 1000, 1000) {
+    public void buttonClicked(View view) {
+       CountDownTimer countDownTimer = new CountDownTimer(seekBar.getProgress() * 1000 + 100, 1000) {
            @Override
            public void onTick(long l) {
                 updateTimer((int) l / 1000);
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SeekBar seekBar = findViewById(R.id.seekBar);
+        seekBar = findViewById(R.id.seekBar);
         numTime = findViewById(R.id.numTime);
 
         seekBar.setMax(600);
