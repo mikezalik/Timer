@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             secondString = "0" + secondString;
         }
 
-        numTime.setText(String.format("%s:%s", Integer.toString(minutes), secondString));
+        numTime.setText(Integer.toString(minutes) + ":" + secondString);
     }
 
     @Override
